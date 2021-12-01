@@ -16,3 +16,4 @@ WebUI/obj
 Test.Unit/bin
 Test.Unit/obj
 .vs
+.ionide/symbolCache.db
