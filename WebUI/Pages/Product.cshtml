@@ -1,0 +1,65 @@
+﻿@page
+@model WebUI.Pages.ProductModel
+@{
+    ViewData["Title"] = "Product - Demo";
+}
+
+<h1>Products</h1>
+<p></p>
+<a asp-page="AddProduct" class="btn btn-primary" role="button"> Add Product </a>
+<p></p>
+
+<div class="table-responsive">
+    <table class="table table-sm table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th class="col-3">
+                    @Html.DisplayNameFor(model => model.Products[0].ProductCode)
+                </th>
+                <th class="col-1">
+                    @Html.DisplayNameFor(model => model.Products[0].Name)
+                </th>
+                <th class="col-3">
+                    @Html.DisplayNameFor(model => model.Products[0].Description)
+                </th>
+                <th class="col-1">
+                    @Html.DisplayNameFor(model => model.Products[0].Price)
+                </th>
+                <th class="col-1">
+                    @Html.DisplayNameFor(model => model.Products[0].DeliveryPrice)
+                </th>
+                <th class="col-3"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.Products)
+            {
+                <tr>
+                    <td class="col-3">
+                        @Html.DisplayFor(model => p.ProductCode)
+                    </td>
+                    <td class="col-1">
+                        @Html.DisplayFor(model => p.Name)
+                    </td>
+                    <td class="col-3">
+                        @Html.DisplayFor(model => p.Description)
+                    </td>
+                    <td class="col-1">
+                        @Html.DisplayFor(model => p.Price)
+                    </td>
+                    <td class="col-1">
+                        @Html.DisplayFor(model => p.DeliveryPrice)
+                    </td>
+                    <td class="col-3">
+                        <a asp-page="/EditProduct" asp-route-productCode="@p.ProductCode" class="btn btn-primary" role="button">Edit</a> 
+                        <a asp-page="/ProductDetail" asp-route-productCode="@p.ProductCode" class="btn btn-primary" role="button">Details</a> 
+                        <a asp-page="/DeleteProduct" asp-route-productCode="@p.ProductCode" class="btn btn-danger" role="button">Delete</a>
+                    </td>
+                </tr>
+            }
+    </table>
+</div>
+
+<div>
+    <a asp-page="index">Back to Home</a>
+</div>

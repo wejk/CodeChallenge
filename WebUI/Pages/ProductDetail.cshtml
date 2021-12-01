@@ -1,0 +1,61 @@
+﻿@page
+@model WebUI.Pages.ProductDetailModel
+@{
+    ViewData["Title"] = "Product Detail";
+}
+
+<h1>Product Details</h1>
+<p></p>
+<a asp-page="AddProductDetail" asp-route-productCode="@this.Model.ProductCode" class="btn btn-primary" role="button"> Add Product Detail </a>
+<p></p>
+
+<div class="table-responsive"></div>
+<table class="table small table-hover table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDetails[0].ProductCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDetails[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDetails[0].Description)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.ProductDetails)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => p.ProductCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => p.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => p.Description)
+                </td>
+                <td>
+                    @Html.HiddenFor(model => p.ProductOptionId)
+                </td>
+
+                <td>
+                    <a asp-page="EditProductDetail" asp-route-productCode="@p.ProductCode" asp-route-productOptionId="@p.ProductOptionId" type="button" class="btn btn-primary" role="button">Edit</a>
+                    <a asp-page="DeleteProductDetail" asp-route-productCode="@p.ProductCode" asp-route-productOptionId="@p.ProductOptionId" class="btn btn-danger" role="button">Delete</a>
+                </td>
+            </tr>
+        }
+</table>
+
+
+<div>
+    <a asp-page="Product">Back to Product List</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

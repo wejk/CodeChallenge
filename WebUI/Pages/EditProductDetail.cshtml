@@ -1,0 +1,44 @@
+﻿@page
+@model WebUI.Pages.EditProductDetailModel
+
+@{
+    ViewData["Title"] = "Edit product detail";
+    var productCode = this.Model.ProductDetail.ProductCode;
+}
+
+<h1>Edit product detail</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductDetail.ProductCode" class="control-label"></label>
+                <input asp-for="ProductDetail.ProductCode" class="form-control" readonly />
+                <span asp-validation-for="ProductDetail.ProductCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductDetail.Name" class="control-label"></label>
+                <input asp-for="ProductDetail.Name" class="form-control" />
+                <span asp-validation-for="ProductDetail.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductDetail.Description" class="control-label"></label>
+                <input asp-for="ProductDetail.Description" class="form-control" />
+                <span asp-validation-for="ProductDetail.Description" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="ProductDetail.ProductOptionId" />
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="ProductDetail" asp-route-productcode="@productCode">Back to Product detail List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

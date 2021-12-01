@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Pages\**" />
+      <Content Remove="Pages\**" />
+      <EmbeddedResource Remove="Pages\**" />
+      <None Remove="Pages\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+		<PackageReference Include="FluentValidation.AspNetCore" Version="10.3.4" />
+		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.12" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.12" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.21" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+
+	</ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\API\KenTan.Api.csproj" />
+      <ProjectReference Include="..\DataLayer\KenTan.DataLayer.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="App_Data\products.db">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <!-- <ItemGroup> -->
+      <!-- <ProjectReference Include="..\API\KenTan.Api.csproj" /> -->
+      <!-- <ProjectReference Include="..\DataLayer\KenTan.DataLayer.csproj" /> -->
+    <!-- </ItemGroup> -->
+
+</Project>

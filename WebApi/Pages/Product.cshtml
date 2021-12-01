@@ -1,0 +1,50 @@
+﻿@page
+@model WebApi.Pages.ProductModel
+@{
+    ViewData["Title"] = "Product - Demo";
+}
+
+<h1>Products</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].ProductCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].DeliveryPrice)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Products)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => p.ProductCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => p.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => p.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => p.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => p.DeliveryPrice)
+                </td>
+            </tr>
+        }
+</table>

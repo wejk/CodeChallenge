@@ -1,0 +1,35 @@
+﻿@page
+@model WebUI.Pages.Shared.DeleteProductDetailModel
+
+@{
+    ViewData["Title"] = "Delete product detail";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <h6>Are you sure you want to delete @Model.ProductDetail.Name?</h6> 
+            @foreach(var confirmDelete in Model.Confirmation)
+            {
+                <input type="radio" asp-for="ConfirmDelete" name="confirmDelete" value="@confirmDelete" />
+                <label for="ConfirmDelete">@confirmDelete</label>
+                <br/>
+            }
+            <p>
+            <input type="hidden" asp-for="@Model.ProductDetail.ProductCode" />
+            <input type="hidden" asp-for="@Model.ProductDetail.Name" />
+            <input type="hidden" asp-for="@Model.ProductDetail.ProductOptionId" />
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="ProductDetail" asp-route-productCode="@Model.ProductDetail.ProductCode">Back to Product detail</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
