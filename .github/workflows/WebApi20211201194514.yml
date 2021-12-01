@@ -1,15 +1,20 @@
-name: Build and deploy .NET Core app to Linux WebApp WebApi20211201194514
+name: Build and deploy .NET Core app to Linux WebApp WebApi_WebUi20211201194514
 on:
   push:
     branches:
     - master
 env:
-  AZURE_WEBAPP_NAME: WebApi20211201194514
-  AZURE_WEBAPP_PACKAGE_PATH: WebApi/publish
-  AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.WebApi20211201194514_d225 }}
+  AZURE_WEBAPP_NAME_WebApi: WebApi20211201194514
+  AZURE_WEBAPP_PACKAGE_PATH_WebApi: WebApi/publish
+  AZURE_WEBAPP_PUBLISH_PROFILE_WebApi: ${{ secrets.WebApi20211201194514_d225 }}
+
+  AZURE_WEBAPP_NAME_WebUi: WebUICodeChallenge
+  AZURE_WEBAPP_PACKAGE_PATH_WebUi: WebUI/publish
+  AZURE_WEBAPP_PUBLISH_PROFILE_WebUi: ${{ secrets.WebUICodeChallenge_0930 }}
+
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 5.0.x
-  WORKING_DIRECTORY: WebApi
+  WORKING_DIRECTORY_WebApi: WebApi
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -20,21 +25,35 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
     - name: Restore
-      run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
+      run: dotnet restore "${{ env.WORKING_DIRECTORY_WebApi }}"
     - name: Build
-      run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
+      run: dotnet build "${{ env.WORKING_DIRECTORY_WebApi }}" --configuration ${{ env.CONFIGURATION }} --no-restore
     - name: Test
-      run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
+      run: dotnet test "${{ env.WORKING_DIRECTORY_WebApi }}" --no-build
     - name: Publish
-      run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
-    - name: Deploy to Azure WebApp
+      run: dotnet publish "${{ env.WORKING_DIRECTORY_WebApi }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH_WebApi }}"
+    - name: Deploy to Azure WebAppApi
       uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        publish-profile: ${{ env.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        app-name: ${{ env.AZURE_WEBAPP_NAME_WebApi }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH_WebApi }}
+        publish-profile: ${{ env.AZURE_WEBAPP_PUBLISH_PROFILE_WebApi }}
     - name: Publish Artifacts
       uses: actions/upload-artifact@v1.0.0
       with:
         name: webapp
-        path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH_WebApi }}
+
+    - name: Deploy to Azure WebApp WebUi
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME_WebUi }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH_WebUi }}
+        publish-profile: ${{ env.AZURE_WEBAPP_PUBLISH_PROFILE_WebUi }}
+    - name: Publish Artifacts
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: webapp
+        path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH_WebUi }}
+  
+    
