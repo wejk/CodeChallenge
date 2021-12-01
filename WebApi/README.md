@@ -1,72 +1,42 @@
-# refactor-this
-The attached project is a poorly written products API in C#.
+# Getting Started
+* This project has been rename and refactor to a .Net Core 3.1 WebApi project
+* The products.db has also been modified
+* The idea of refactor the project to WebApi. So that it can be used for multiple UIs
+* It can be extened, modified and scale with limited impact to UI.
 
-Please evaluate and refactor areas where you think can be improved. 
+## You will need:
+* .NET Core 3.0+
+* .NET CLI
 
-Consider all aspects of good software engineering and show us how you'll make it #beautiful and make it a production ready code.
+## Project Dependencies
+This project reference
+	* KenTan.API - This project can be export as Nuget
+	* KenTan.DataLayer - This project design to interact with DataLayer, the sqlite can be swabbed easily with other DataStorage.
 
-## Getting started for applicants
 
-There should be these endpoints:
+## Source Code
+Clone this repo:
 
-1. `GET /products` - gets all products.
-2. `GET /products?name={name}` - finds all products matching the specified name.
-3. `GET /products/{id}` - gets the project that matches the specified ID - ID is a GUID.
-4. `POST /products` - creates a new product.
-5. `PUT /products/{id}` - updates a product.
-6. `DELETE /products/{id}` - deletes a product and its options.
-7. `GET /products/{id}/options` - finds all options for a specified product.
-8. `GET /products/{id}/options/{optionId}` - finds the specified product option for the specified product.
-9. `POST /products/{id}/options` - adds a new product option to the specified product.
-10. `PUT /products/{id}/options/{optionId}` - updates the specified product option.
-11. `DELETE /products/{id}/options/{optionId}` - deletes the specified product option.
+````Terminal
+git clone https://github.com/wejk/CodeChallenge.git
+cd CodeChallenge
+````
 
-All models are specified in the `/Models` folder, but should conform to:
+## Build
+````Terminal
+dotnet build
+````
 
-**Product:**
+## Test
+From the solution folder
+```Terminal
+dotnet test
 ```
-{
-  "Id": "01234567-89ab-cdef-0123-456789abcdef",
-  "Name": "Product name",
-  "Description": "Product description",
-  "Price": 123.45,
-  "DeliveryPrice": 12.34
-}
-```
-
-**Products:**
-```
-{
-  "Items": [
-    {
-      // product
-    },
-    {
-      // product
-    }
-  ]
-}
+## Run
+From the solution folder
+```Terminal
+dotnet run -p WebApi.csproj
 ```
 
-**Product Option:**
-```
-{
-  "Id": "01234567-89ab-cdef-0123-456789abcdef",
-  "Name": "Product name",
-  "Description": "Product description"
-}
-```
-
-**Product Options:**
-```
-{
-  "Items": [
-    {
-      // product option
-    },
-    {
-      // product option
-    }
-  ]
-}
-```
+## Swagger UI
+The local swagger URL is: http://localhost:5001/swagger/index.html
