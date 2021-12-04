@@ -3,6 +3,10 @@
   <PropertyGroup>
     <RazorPage_SelectedScaffolderID>RazorPageScaffolder</RazorPage_SelectedScaffolderID>
     <RazorPage_SelectedScaffolderCategoryPath>root/Common/RazorPage</RazorPage_SelectedScaffolderCategoryPath>
-    <NameOfLastUsedPublishProfile>C:\Users\ken\repo\CodeChallenge\.github\workflows\WebApi20211201194514.yml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\ken\repo\CodeChallenge\WebUI\Properties\PublishProfiles\WebUICodeChallenge - Zip Deploy.pubxml</NameOfLastUsedPublishProfile>
+    <ActiveDebugProfile>WebUI</ActiveDebugProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

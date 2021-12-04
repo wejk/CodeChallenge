@@ -21,12 +21,12 @@ namespace WebUI.Models
         [Required]
         [Column(TypeName = "decimal(4, 2)")] 
         [Range(1,5000)] // Business Rule: Price between 1 and 5000
-        [DataType(DataType.Currency)]
+       // [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(4, 2)")]
-        [DataType(DataType.Currency)]
+        //[DataType(DataType.Currency)]
         [Display(Name = "Delivery Price")]
 
         [Range(0,5000)] // Business Rule: delivery can be $0 - free delivery
